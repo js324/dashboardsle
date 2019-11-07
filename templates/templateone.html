@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			//$.post('getcont.php', { url: url }, function(data) {
+				//  document.getElementById('somediv').innerHTML = data;        
+			//});
+		</script>
+		<title> Dashboard </title>
+		<link rel="icon" href="../favicon.png">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script type="text/javascript">
+            var urllist = {{ urllist | tojson }}
+        </script>
+		<script src="../static/main.js"></script>
+
+		<link rel="stylesheet" href="../static/main.css">
+	</head>
+	<body>
+		<!-- Must wrap entire body so everything in page transitions -->
+		<main data-router-wrapper>
+			<section data-router-view="default" data-transition="default">
+				<div id="container">
+				<div id="somediv" class="twourl" style="display: none"> 
+					    
+			<iframe id="last" class="test" frameborder="0" style="border:0" scrolling="no"></iframe>
+           
+      
+            
+					
+					<!--Can take of the slides as one linked list, javascript clicks on link with id "nextslide"-->
+				</div>
+				<a href="templatethree.html" id="nextslide"></a><!-- [...] -->
+			</section>
+		</main>
+		
+	</body>
+</html>

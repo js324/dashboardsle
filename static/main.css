@@ -1,0 +1,28 @@
+body {
+width: 100vw;
+background-color: black;
+background-repeat: no-repeat;
+margin: 0;
+padding: 0;
+overflow-x:hidden;
+overflow-y:hidden;
+}
+#somediv {
+	
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#navbar
+{
+	display: none;
+	background-color: rgba(0,0,0,0.);
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			//$.post('getcont.php', { url: url }, function(data) {
+				//  document.getElementById('somediv').innerHTML = data;        
+			//});
+		</script>
+		<title>Admin Page </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script type="text/javascript">
+            var urllists = {{ urllist | tojson }}
+			var arrpos= {{arrpos | tojson }};
+        </script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="static/table.css">
+		<script src="static/table.js"></script>
+	</head>
+	<body>
+		{% set urllists = urllist %}  
+		<div id="myModal" class="modal">
+  
+			<div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h4 class="modal-title font-weight-bold">Adding a Slide</h4>
+					<button type="button" class="close">
+					  <span>&times;</span>
+					</button>
+				  </div>
+				  <div class="modal-body">
+				  <header><b> Enter URLs into each input box </b></header>
+					<form>
+					<div class="md-form">
+					  <i class="fas fa-user prefix grey-text"></i>
+					  <input type="text" id="form1" name="urls" class="form-control" autocomplete="new-password" placeholder="Leave empty if there is no URL">
+					  
+					</div>
+					<div class="md-form">
+					  <i class="fas fa-user prefix grey-text"></i>
+					  <input type="text" id="form2" name="urls" class="form-control" autocomplete="new-password" placeholder="Leave empty if there is no URL">
+					  
+					</div>
+					<div class="md-form">
+					  <i class="fas fa-user prefix grey-text"></i>
+					  <input type="text" id="form3" name="urls" class="form-control" autocomplete="new-password" placeholder="Leave empty if there is no URL">
+					  
+					</div>
+					<div class="md-form">
+					  <i class="fas fa-user prefix grey-text"></i>
+					  <input type="text" id="form4" name="urls" class="form-control" autocomplete="new-password" placeholder="Leave empty if there is no URL">
+					  
+					</div>
+					<div class="md-form">
+					  <i class="fas fa-user prefix grey-text"></i>
+					  <input type="text" id="form5" name="time" value="">
+					  <label for="form5">Time (in seconds)</label>
+					</div>
+
+				  </div>
+				  <div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
+				  </div>
+				  </form>
+				</div>
+  </div>
+
+		</div>
+
+		<div >
+			<table id = "jsontable" style="width:90%"> 
+			<tr class="headers">
+			<th>ID</th>
+			<th>URLs</th> 
+			<th>Time (seconds)</th>
+			<th style="width:200px"> <button type="button" class="btn btn-info add">Add Slide</button> </th> 
+			</tr>
+			{% for x in range(urllists.websites[urllists.websites|length-1].id) %} 
+				{% if x == urllists.websites[urllists.websites|length-1].id-1%}
+					{% set counter = urllists.websites|length %}
+				{% else %}
+					{% set counter = arrpos[x+1] %}
+				{% endif %}
+				
+				<tr class="rows">
+				<th class="ids">{{x+1}}</th> <!-- ID -->
+				<th class="urlslist" > 
+				
+				{% for count in range(counter-arrpos[x]) %}
+				
+					{{count+1}}. {{ urllists.websites[count+arrpos[x]].url }}
+	
+				{% endfor %}	
+				</th> <!-- URLS need another for loop -->
+				<th class="timing"> {{urllists.websites[arrpos[x]].time }} s</th>
+				<th ><button type="button" class="btn btn-warning edit">Edit</button> 
+					<button type="button" class="btn btn-danger delete">Delete</button></th> 
+				</tr>
+			{% endfor %}
+			 <!-- Make map initially, whenever map is updated, just reprint the table with the updated values-->
+			</table> 
+			<div id="btnwrapper">
+			<button onclick="window.location.href='/'" type="button" class="btn btn-success btntoslides">Back to Slideshow</button>
+			</div>
+		</div> 
+	</body>
+</html>

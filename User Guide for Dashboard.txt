@@ -1,0 +1,21 @@
+﻿User Guide
+Purpose
+* This project is a dashboard meant to run through different slides with the webpages of various inputted urls, being able to display 1-4 URLs for each slide and with 4 different templates depending on the amount of URLs.
+
+Technologies Needed
+   1. Must have a version of Python 3
+   2. Must install Flask (Python microframework used for the backend)
+   3. Rest is HTML, CSS, and JS (with Jquery but the Jquery library is included inside script tags by calling from a CDN)
+
+
+1. Running the Program
+   * If not using a dedicated server, the program can be run through the command line (different commands depending on the OS and python version, for example with Python 3.7 and Windows 10 cmd, the command is: py -m flask run)
+   * Multiple web browsers can be used (tested to work so far in Microsoft Edge, Googe Chrome, and Firefox)
+   * Slideshow is accessed on localhost, port 5000 (by default on Flask)
+2. Slideshow Use
+   * The user must go to the index page first (whose route is just localhost:5000), and the slideshow will automatically run on its own.  Currently. there is no way for the user to traverse through the slides manually as the slides only appear based on the time value set to.  The user can resize the window and the templates will automatically adjust (since the iframes are sized according to the viewport), meaning fullscreen is possible. The user can change the URL to go to the admin page (localhost:5000/admin) where the templates, urls, and time can be changed.
+
+
+3. Admin Page Use
+   * To access the admin page, the route is: localhost:5000/admin, which will direct you to the admin page where there is a table.
+   * The table is editable through clicking buttons (Add Slide, Edit, Delete) that will bring up a modal box where the urls and time can be inputted. The modal box for adding and editing slides will have 4 input boxes for the urls (one for each) where the slide and template number will be adjusted depending on how many urls are inputted and the last input box is for the amount of seconds the slide should appear for.  Unfortunately, no validation has been implemented, meaning should there be a broken link or random characters are inputted, it will still be saved into the database.  On the slides, just a black screen would appear in place of those invalid urls however. Lastly, there is a simple button at the bottom of the table to take the user back to the index page (the beginning of the slideshow).
